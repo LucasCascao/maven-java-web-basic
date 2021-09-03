@@ -8,18 +8,18 @@ import java.io.IOException;
 
 public class RequestHelper {
 
-    private final static ObjectMapper mapper = new ObjectMapper();
+    private final static ObjectMapper MAPPER = new ObjectMapper();
 
     public static String getRequestBody(HttpServletRequest request) throws IOException {
         return request.getReader().lines()
                 .reduce("", (accumulator, actual) -> accumulator + actual);
     }
 
-    public static <T> T parseToObject(String payload, Class<T> clazz) throws JsonProcessingException {
-        return mapper.readValue(payload, clazz);
+    public static <T> T parseToObject(HttpServletRequest request, Class<T> clazz) throws IOException {
+            return MAPPER.readValue(RequestHelper.getRequestBody(request), clazz);
     }
 
     public static <T> String parseToJson(T payload) throws JsonProcessingException {
-        return mapper.writeValueAsString(payload);
+        return MAPPER.writeValueAsString(payload);
     }
 }
