@@ -1,4 +1,4 @@
-package br.com.alura.lojaweb.controller;
+package br.com.alura.lojaweb.controller.produto.v1;
 
 import br.com.alura.lojaweb.domain.Produto;
 import br.com.alura.lojaweb.util.RequestHelper;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/produtos"})
+@WebServlet(urlPatterns = {"/v1/produtos"})
 public class ProdutoController extends HttpServlet {
 
     private static final List<Produto> PRODUTOS = new ArrayList<>();
